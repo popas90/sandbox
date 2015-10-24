@@ -1,5 +1,6 @@
 import socket
 import sys
+from _thread import *
 
 
 HOST = ''  # Symbolic name meaning all available interfaces
@@ -19,15 +20,23 @@ print('Socket bind complete')
 s.listen(10)
 print('Socket listening...')
 
-# wait to accept a connection - blocking call
-conn, addr = s.accept()
 
-# display client information
-print('Connected with ' + addr[0] + ':' + str(addr[1]))
+def clientthread(conn):
+    conn.send(bytes('Welcome to the server!\n', 'utf-8'))
+    while True:
+        data = conn.recv(1024)
+        reply = 'OK...' + data.decode('utf-8')
+        if not data:
+            break
+        conn.sendall(bytes(reply, 'utf-8'))
+    conn.close()
 
 # now keep talking with the client
-data = conn.recv(1024)
-conn.sendall(data)
+while True:
+    # wait to accept a connection - blocking call
+    conn, addr = s.accept()
+    print('Connected with ' + addr[0] + ':' + str(addr[1]))
 
-conn.close()
+    start_new_thread(clientthread, (conn,))
+
 s.close()

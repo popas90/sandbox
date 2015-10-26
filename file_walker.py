@@ -13,8 +13,6 @@ print('walk_dir (absolute) = ' + os.path.abspath(walk_dir))
 
 for root, subdirs, files in os.walk(walk_dir):
     print('--\nroot = ' + root)
-    list_file_path = os.path.join(root, 'my-directory-list.txt')
-    print('list_file_path = ' + list_file_path)
 
     for filename in files:
         file_path = os.path.join(root, filename)

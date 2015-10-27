@@ -41,6 +41,16 @@ def list_all_files(walk_dir):
 
     return (file_names, file_paths)
 
+
+def create_hash_dirs(root_dir):
+    """
+    Inside the root directory, create directories named 00 to ff.
+    """
+    for i in range(0x10):
+        for j in range(0x10):
+            os.makedirs(os.path.join(root_dir,
+                                     format(i, 'X') + format(j, 'X')))
+
 if __name__ == '__main__':
     arguments = parse_cmd()
     print(arguments['user_name'])
@@ -48,3 +58,5 @@ if __name__ == '__main__':
     file_names, file_paths = list_all_files(arguments['dir_path'])
     print(file_names)
     print(file_paths)
+    os.makedirs(arguments['user_name'])
+    create_hash_dirs(arguments['user_name'])

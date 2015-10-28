@@ -1,0 +1,1 @@
+{"modules": [{"name": "test_initialize_storage", "nr_error": 0, "testcases": [{"name": "test_list_all_files", "result": "success"}, {"name": "test_create_hash_dirs", "result": "success"}], "nr_failed": 0, "nr_success": 2}], "metadata": {"command": "/usr/bin/python3 -m nose --with-json-extended", "cwd": "/home/popas/Code/sandbox", "time": 1446067639.7851987}}

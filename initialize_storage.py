@@ -51,6 +51,11 @@ def create_hash_dirs(root_dir):
             os.makedirs(os.path.join(root_dir,
                                      format(i, 'X') + format(j, 'X')))
 
+
+def split_and_hash_file(file_name, file_path):
+    pass
+
+
 if __name__ == '__main__':
     arguments = parse_cmd()
     print(arguments['user_name'])
